@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/world_time.dart';
 import '../pages/home.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //ADD SOMETHING
 class Loading extends StatefulWidget {
@@ -13,8 +14,8 @@ class _LoadingState extends State<Loading> {
   String time = 'loading';
 
   Future<void> setUpWorldTime() async {
-    // Awaits and gets the time of a location
-    WorldTime instance = WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/London');
+    // Awaits and gets the time of a location from world_time
+    WorldTime instance = WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/London', isDaytime: true);
     await instance.getTime();
 
     // updates the time variable after getting the data
@@ -27,7 +28,9 @@ class _LoadingState extends State<Loading> {
       'location': instance.location,
       'time': instance.time,
       'url': instance.url,
+      'isDaytime': instance.isDaytime,
     };
+    // print(instance.time);
     // Navigates to the next page after screen loaded
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home(), settings: RouteSettings(arguments: arguments)));
   }
@@ -43,10 +46,13 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(50.0),
-        child: Text(time),
-      ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: SpinKitCubeGrid(
+          color: Colors.black,
+          size: 50.0,
+        )
+      )
     );
   }
 }
