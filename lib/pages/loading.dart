@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../services/world_time.dart';
 import '../pages/home.dart';
 
+//ADD SOMETHING
 class Loading extends StatefulWidget {
   @override
   State<Loading> createState() => _LoadingState();
@@ -12,7 +13,7 @@ class _LoadingState extends State<Loading> {
   String time = 'loading';
 
   Future<void> setUpWorldTime() async {
-    WorldTime instance = WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/');
+    WorldTime instance = WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/London');
     await instance.getTime();
     Object arguments = {
       'location': instance.location,
@@ -24,7 +25,6 @@ class _LoadingState extends State<Loading> {
 
   @override
   void initState() {
-    // to still continue even if a request is sent
     super.initState();
   }
 
