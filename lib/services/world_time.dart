@@ -16,7 +16,7 @@ class WorldTime {
       http.Response response = await http.get(Uri.parse('http://worldtimeapi.org/api/timezone/$url'));
       // to convert it to json from string
       Map data = jsonDecode(response.body);
-      print(data);
+      // print(data);
 
       //get properties from data
       String datetime = data['datetime'];
@@ -27,9 +27,8 @@ class WorldTime {
       now = now.add(Duration(hours: int.parse(offset)));
 
       time = now.toString();
-      print(time);
+      // print(time);
     } catch (e) {
-      print('error occured: $e');
       time = 'could not get time data';
     }
   }

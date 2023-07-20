@@ -12,16 +12,24 @@ class Test extends StatefulWidget {
 
 class _TestState extends State<Test> {
 
-  Future<void> Test() async {
-    print('working');
+  String time = '';
+  String datetime = '';
+
+  Future<void> fetchData() async {
     try {
       http.Response response = await http.get(Uri.parse('http://worldtimeapi.org/api/timezone/Europe/London'));
       Map data = jsonDecode(response.body);
-
-      print(data);
+      datetime = data['datetime'];
+      print(datetime);
     } catch(e) {
       print('Error occured: $e');
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
   }
 
   @override
@@ -29,7 +37,7 @@ class _TestState extends State<Test> {
     return Scaffold(
       body:  Padding(
         padding: EdgeInsets.all(50.0),
-        child: Text('What is the time'),
+        child: Text('The time is: $datetime'),
       ),
     );
   }

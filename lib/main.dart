@@ -6,7 +6,7 @@ import './notes/test.dart';
 
 void main() => runApp(MaterialApp(
   // home: Home(),
-  initialRoute: '/test',
+  initialRoute: '/',
   routes: {
     '/test': (context) => Test(),
     '/': (context) => Loading(),
